@@ -16,11 +16,12 @@
 	NSEntityDescription *entity = [NSEntityDescription entityForName:entityName 
 											  inManagedObjectContext:context];
 	[fetchRequest setEntity:entity];
-    // NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:sortKey ascending:YES];
-	//NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    
 	NSError *error;
-    [fetchRequest setSortDescriptors:sortDescriptors];
-    [fetchRequest setPredicate:predicate];
+    if(sortDescriptors)
+        [fetchRequest setSortDescriptors:sortDescriptors];
+    if(predicate)
+        [fetchRequest setPredicate:predicate];
 	NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
     
     [sortDescriptors release];
