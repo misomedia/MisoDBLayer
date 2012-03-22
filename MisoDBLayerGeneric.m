@@ -12,18 +12,20 @@
 -(NSArray*)fetch:(NSString*)entityName fromContext:(NSManagedObjectContext*)context sortedBy:(NSArray*)sortDescriptors filteredBy:(NSPredicate*)predicate
 {
     [sortDescriptors retain];
+
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 	NSEntityDescription *entity = [NSEntityDescription entityForName:entityName 
 											  inManagedObjectContext:context];
 	[fetchRequest setEntity:entity];
-    // NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:sortKey ascending:YES];
-	//NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    
 	NSError *error;
-    [fetchRequest setSortDescriptors:sortDescriptors];
-    [fetchRequest setPredicate:predicate];
+    if(sortDescriptors)
+        [fetchRequest setSortDescriptors:sortDescriptors];
+    if(predicate)
+        [fetchRequest setPredicate:predicate];
 	NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
     
-    [sortDescriptors release];
+   
 	[fetchRequest release];
     
 	return fetchedObjects;
@@ -40,6 +42,23 @@
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
    
     return error;
+}
+
+-(NSError*)insert:(NSArray*)managedObjArr inContext:(NSManagedObjectContext*) context
+{
+    
+	    
+	for(NSManagedObject* obj in managedObjArr)
+            [context insertObject:obj];
+    
+    
+	NSError* error = nil;
+	if (![context save:&error]) {
+		NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+		
+	}
+    
+	return error;
 }
 
 @end
