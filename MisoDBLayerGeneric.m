@@ -11,7 +11,7 @@
 @implementation MisoDBLayerGeneric
 -(NSArray*)fetch:(NSString*)entityName fromContext:(NSManagedObjectContext*)context sortedBy:(NSArray*)sortDescriptors filteredBy:(NSPredicate*)predicate
 {
-    
+    [sortDescriptors retain];
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 	NSEntityDescription *entity = [NSEntityDescription entityForName:entityName 
 											  inManagedObjectContext:context];
@@ -40,7 +40,6 @@
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
    
     return error;
-
 }
 
 @end
