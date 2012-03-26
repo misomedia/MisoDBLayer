@@ -46,7 +46,7 @@
 
 -(NSError*)insert:(NSArray*)managedObjArr inContext:(NSManagedObjectContext*) context
 {
-    
+  
 	    
 	for(NSManagedObject* obj in managedObjArr)
             [context insertObject:obj];
