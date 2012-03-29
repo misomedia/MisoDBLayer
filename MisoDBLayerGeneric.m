@@ -9,7 +9,7 @@
 #import "MisoDBLayerGeneric.h"
 
 @implementation MisoDBLayerGeneric
--(NSArray*)fetch:(NSString*)entityName fromContext:(NSManagedObjectContext*)context sortedBy:(NSArray*)sortDescriptors filteredBy:(NSPredicate*)predicate
++(NSArray*)fetch:(NSString*)entityName fromContext:(NSManagedObjectContext*)context sortedBy:(NSArray*)sortDescriptors filteredBy:(NSPredicate*)predicate
 {
     [sortDescriptors retain];
 
