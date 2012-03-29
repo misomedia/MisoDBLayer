@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MisoDBLayerGeneric : NSObject
+@interface MisoDBLayerGeneric : NSObject;
 -(NSArray*)fetch:(NSString*)entityName fromContext:(NSManagedObjectContext*)context sortedBy:(NSArray*)sortDescriptors filteredBy:(NSPredicate*)predicate;
 -(NSError*)delete:(NSArray*) managedObjectsArray fromContext:(NSManagedObjectContext*) context;
 -(NSError*)insert:(NSArray*)managedObjArr inContext:(NSManagedObjectContext*) context;
++(NSError*)insert:(NSArray*)managedObjArr inContext:(NSManagedObjectContext*) context;
 @end
