@@ -25,7 +25,7 @@
         [fetchRequest setPredicate:predicate];
 	NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
     
-   
+    [sortDescriptors release];
 	[fetchRequest release];
     
 	return fetchedObjects;
