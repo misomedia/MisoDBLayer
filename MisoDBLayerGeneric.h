@@ -13,4 +13,5 @@
 -(NSError*)delete:(NSArray*) managedObjectsArray fromContext:(NSManagedObjectContext*) context;
 +(NSError*)insert:(NSArray*)managedObjArr inContext:(NSManagedObjectContext*) context;
 +(NSArray*)fetch:(NSString*)entityName fromContext:(NSManagedObjectContext*)context sortedBy:(NSArray*)sortDescriptors filteredBy:(NSPredicate*)predicate;
++(NSManagedObject*) allocEntityTypeObj:(NSString*)table_name inContext:(NSManagedObjectContext*) context;
 @end

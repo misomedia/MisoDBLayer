@@ -25,8 +25,10 @@
         [fetchRequest setPredicate:predicate];
 	NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
     
+
    
 	//[fetchRequest release];
+
     
 	return fetchedObjects;
 }
@@ -60,4 +62,11 @@
 	return error;
 }
 
++(NSManagedObject*) allocEntityTypeObj:(NSString*)table_name inContext:(NSManagedObjectContext*) context
+{
+    NSEntityDescription* entity = [NSEntityDescription entityForName:table_name inManagedObjectContext:context];	
+    NSManagedObject* entity_obj = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:nil];
+    
+    return entity_obj;
+}
 @end
