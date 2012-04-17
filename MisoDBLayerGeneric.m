@@ -11,7 +11,7 @@
 @implementation MisoDBLayerGeneric
 +(NSArray*)fetch:(NSString*)entityName fromContext:(NSManagedObjectContext*)context sortedBy:(NSArray*)sortDescriptors filteredBy:(NSPredicate*)predicate
 {
-    [sortDescriptors retain];
+   // [sortDescriptors retain];
 
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 	NSEntityDescription *entity = [NSEntityDescription entityForName:entityName 
@@ -26,7 +26,7 @@
 	NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
     
    
-	[fetchRequest release];
+	//[fetchRequest release];
     
 	return fetchedObjects;
 }
