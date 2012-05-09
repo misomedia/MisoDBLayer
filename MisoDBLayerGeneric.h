@@ -9,9 +9,15 @@
 #import <Foundation/Foundation.h>
 
 @interface MisoDBLayerGeneric : NSObject;
-//-(NSArray*)fetch:(NSString*)entityName fromContext:(NSManagedObjectContext*)context sortedBy:(NSArray*)sortDescriptors filteredBy:(NSPredicate*)predicate;
--(NSError*)delete:(NSArray*) managedObjectsArray fromContext:(NSManagedObjectContext*) context;
-+(NSError*)insert:(NSArray*)managedObjArr inContext:(NSManagedObjectContext*) context;
-+(NSArray*)fetch:(NSString*)entityName fromContext:(NSManagedObjectContext*)context sortedBy:(NSArray*)sortDescriptors filteredBy:(NSPredicate*)predicate;
-+(NSManagedObject*) allocEntityTypeObj:(NSString*)table_name inContext:(NSManagedObjectContext*) context;
+
++(NSError*)deleteManagedObjects:(NSArray*) managedObjectsArray 
+                  withinContext:(NSManagedObjectContext*) context;
++(NSError*)insertManagedObjects:(NSArray*) managedObjArr 
+                  withinContext:(NSManagedObjectContext*) context;
++(NSArray*)fetchManagedObjectsFromEntityWithName:(NSString*) entityName 
+                                   withinContext:(NSManagedObjectContext*) context 
+                                        sortedBy:(NSArray*) sortDescriptors 
+                                      filteredBy:(NSPredicate*) predicate;
++(NSManagedObject*) allocEntityTypeObj:(NSString*) entityName 
+                         withinContext:(NSManagedObjectContext*) context;
 @end
