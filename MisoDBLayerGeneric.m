@@ -9,7 +9,11 @@
 #import "MisoDBLayerGeneric.h"
 
 @implementation MisoDBLayerGeneric
-+(NSArray*)fetch:(NSString*)entityName fromContext:(NSManagedObjectContext*)context sortedBy:(NSArray*)sortDescriptors filteredBy:(NSPredicate*)predicate
+
++(NSArray*)fetchManagedObjectsFromEntityWithName:(NSString*)entityName 
+                                   withinContext:(NSManagedObjectContext*)context 
+                                        sortedBy:(NSArray*) sortDescriptors 
+                                      filteredBy:(NSPredicate*)predicate
 {
    [sortDescriptors retain];
 
@@ -34,7 +38,8 @@
 	return fetchedObjects;
 }
 
--(NSError*)delete:(NSArray*) managedObjectsArray fromContext:(NSManagedObjectContext*) context
++(NSError*)deleteManagedObjects:(NSArray*) managedObjectsArray 
+                  withinContext:(NSManagedObjectContext*) context
 {
     NSError* error = nil;
     for(NSManagedObject* obj in managedObjectsArray)
@@ -47,7 +52,8 @@
     return error;
 }
 
-+(NSError*)insert:(NSArray*)managedObjArr inContext:(NSManagedObjectContext*) context
++(NSError*)insertManagedObjects:(NSArray*) managedObjArr
+                  withinContext:(NSManagedObjectContext*) context
 {
     
     for(NSManagedObject* obj in managedObjArr)
@@ -63,9 +69,10 @@
 	return error;
 }
 
-+(NSManagedObject*) allocEntityTypeObj:(NSString*)table_name inContext:(NSManagedObjectContext*) context
++(NSManagedObject*) allocEntityTypeObj:(NSString*) entityName 
+                         withinContext:(NSManagedObjectContext*) context
 {
-    NSEntityDescription* entity = [NSEntityDescription entityForName:table_name inManagedObjectContext:context];	
+    NSEntityDescription* entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];	
     NSManagedObject* entity_obj = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:nil];
     
     return entity_obj;
